@@ -1,0 +1,1 @@
+exports.customerModel = require('./customerModel');

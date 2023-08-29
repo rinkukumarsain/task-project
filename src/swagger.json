@@ -1,0 +1,105 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "timeMe-App",
+        "description": "Description of my API",
+        "version": "1.0.0"
+    },
+    "schemas": [
+        "http"
+    ],
+    "basePath": "/api/v1",
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/user/userSignUp": {
+            "post": {
+                "tags": [
+                    "user"
+                ],
+                "description": "Register parent.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Body",
+                        "in": "body",
+                        "description": "Enter parent details",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/userSignUp"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/userSignUpResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/get400Response"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "userSignUp": {
+            "type": "object",
+            "required": {
+                "first_name": "first_name",
+                "last_name": "last_name",
+                "email": "email",
+                "phone": "phone",
+                "roleId": "roleId",
+                "password": "password",
+                "child": "child"
+            },
+            "properties": {
+                "first_name": {
+                    "type": "string",
+                    "description": "Enter first_name",
+                    "example": "rinku"
+                },
+                "last_name": {
+                    "type": "string",
+                    "description": "Enter last_name",
+                    "example": "sain"
+                },
+                "email": {
+                    "type": "string",
+                    "description": "Enter email",
+                    "example": "rksain@gmail.com"
+                },
+                "phone": {
+                    "type": "string",
+                    "description": "Enter phone",
+                    "example": "9790435674"
+                },
+                "roleId": {
+                    "type": "string",
+                    "description": "Enter roleId",
+                    "example": "64d08bfe463b010953ff828c"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Enter password",
+                    "example": "12345678"
+                }
+            }
+        }
+    }
+}
