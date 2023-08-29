@@ -1,5 +1,5 @@
 const express = require('express');
-const { customerRegister,customerLogin,getAllCustomer ,getCustomer} = require('../controllers/customerController');
+const { customerRegister,customerLogin ,getCustomer} = require('../controllers/customerController');
 const router = express.Router();
 let { auth } = require("../../middleware/auth")
 const validate = require('../../validate');

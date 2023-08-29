@@ -1,8 +1,8 @@
-const { customerRegister,customerLogin, getAllCustomer,getCustomer } = require('../services/customerService');
+const { addCategory , getAllCategory, addPost,getAllPost} = require('../services/categoryService');
 
-exports.customerRegister = async (req, res, next) => {
+exports.addCategory = async (req, res, next) => {
     try {
-        const data = await customerRegister(req);
+        const data = await addCategory(req);
         if (data.status === false) {
             return res.status(200).json(Object.assign(data));
         } else {
@@ -13,9 +13,9 @@ exports.customerRegister = async (req, res, next) => {
     }
 }
 
-exports.customerLogin = async (req, res, next) => {
+exports.getAllCategory = async (req, res, next) => {
     try {
-        const data = await customerLogin(req);
+        const data = await getAllCategory(req);
         if (data.status === false) {
             return res.status(200).json(Object.assign(data));
         } else {
@@ -26,9 +26,22 @@ exports.customerLogin = async (req, res, next) => {
     }
 }
 
-exports.getCustomer = async (req, res, next) => {
+exports.addPost = async (req, res, next) => {
     try {
-        const data = await getCustomer(req);
+        const data = await addPost(req);
+        if (data.status === false) {
+            return res.status(200).json(Object.assign(data));
+        } else {
+            return res.status(200).json(Object.assign(data));
+        }
+    } catch (error) {
+        next(error);
+    }
+}
+
+exports.getAllPost = async (req, res, next) => {
+    try {
+        const data = await getAllPost(req);
         if (data.status === false) {
             return res.status(200).json(Object.assign(data));
         } else {

@@ -20,7 +20,7 @@ const auth = async(req, res, next) => {
         if (!decoded) {
             throw new Error()
         }
-        req.user = decoded;
+        req.user = data;
         next();
 
     } catch (e) {

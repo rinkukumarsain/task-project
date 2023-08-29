@@ -8,7 +8,7 @@
     "schemas": [
         "http"
     ],
-    "basePath": "/api/v1",
+    "basePath": "/api",
     "consumes": [
         "application/json"
     ],
@@ -16,12 +16,12 @@
         "application/json"
     ],
     "paths": {
-        "/user/userSignUp": {
+        "/customer-regster": {
             "post": {
                 "tags": [
-                    "user"
+                    "customer"
                 ],
-                "description": "Register parent.",
+                "description": "Register Customer.",
                 "produces": [
                     "application/json"
                 ],
@@ -32,10 +32,10 @@
                     {
                         "name": "Body",
                         "in": "body",
-                        "description": "Enter parent details",
+                        "description": "Enter customer details",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/userSignUp"
+                            "$ref": "#/definitions/createCustomer"
                         }
                     }
                 ],
@@ -43,7 +43,306 @@
                     "200": {
                         "description": "Successful response",
                         "schema": {
-                            "$ref": "#/definitions/userSignUpResponse"
+                            "$ref": "#/definitions/createCustomerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/get400Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/customer-login": {
+            "post": {
+                "tags": [
+                    "customer"
+                ],
+                "description": "Login Customer.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Body",
+                        "in": "body",
+                        "description": "Enter customer details",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/loginCustomer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/loginCustomerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/get400Response"
+                        }
+                    }
+                }
+            }
+        },
+
+        "/add-category": {
+            "post": {
+                "tags": [
+                    "category"
+                ],
+                "description": "add category.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Bearer token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Body",
+                        "in": "body",
+                        "description": "Enter customer details",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addCategory"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/get200Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/get400Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/add-post": {
+            "post": {
+                "tags": [
+                    "post"
+                ],
+                "description": "add post.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Bearer token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "Body",
+                        "in": "body",
+                        "description": "Enter post details",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/addPost"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/get200Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/get400Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/get-customer": {
+            "get": {
+                "tags": [
+                    "customer"
+                ],
+                "description": "get customer details.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Bearer token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "description": "Enter customer details",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/get200Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/get400Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/all-category": {
+            "get": {
+                "tags": [
+                    "category"
+                ],
+                "description": "get category details.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Bearer token",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/get200Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "schema": {
+                            "$ref": "#/definitions/get400Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/all-posts": {
+            "get": {
+                "tags": [
+                    "post"
+                ],
+                "description": "get category details.",
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "Authorization",
+                        "in": "header",
+                        "description": "Bearer token",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "category",
+                        "in": "query",
+                        "description": "Enter category id",
+                        "required": false
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Enter page number",
+                        "required": false
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "Enter limit",
+                        "required": false
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Enter post name",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "schema": {
+                            "$ref": "#/definitions/get200Response"
                         }
                     },
                     "400": {
@@ -56,48 +355,171 @@
             }
         }
     },
+    
     "definitions": {
-        "userSignUp": {
+        "createCustomer": {
             "type": "object",
             "required": {
-                "first_name": "first_name",
-                "last_name": "last_name",
                 "email": "email",
                 "phone": "phone",
-                "roleId": "roleId",
-                "password": "password",
-                "child": "child"
+                "role": "role",
+                "password": "password"
             },
             "properties": {
-                "first_name": {
-                    "type": "string",
-                    "description": "Enter first_name",
-                    "example": "rinku"
-                },
-                "last_name": {
-                    "type": "string",
-                    "description": "Enter last_name",
-                    "example": "sain"
-                },
                 "email": {
                     "type": "string",
                     "description": "Enter email",
-                    "example": "rksain@gmail.com"
+                    "example": "sain@gmail.com"
                 },
                 "phone": {
                     "type": "string",
                     "description": "Enter phone",
-                    "example": "9790435674"
+                    "example": "9351290347"
                 },
-                "roleId": {
+                "role": {
                     "type": "string",
-                    "description": "Enter roleId",
-                    "example": "64d08bfe463b010953ff828c"
+                    "description": "Enter role",
+                    "example": "admin"
                 },
                 "password": {
                     "type": "string",
                     "description": "Enter password",
                     "example": "12345678"
+                }
+            }
+        },
+        "loginCustomer": {
+            "type": "object",
+            "required": {
+                "email": "email",
+                "password": "password"
+            },
+            "properties": {
+                "email": {
+                    "type": "string",
+                    "description": "Enter email",
+                    "example": "sain@gmail.com"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Enter password",
+                    "example": "12345678"
+                }
+            }
+        },
+        "addCategory": {
+            "type": "object",
+            "required": {
+                "name": "name"
+            },
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Enter category",
+                    "example": "sain"
+                }
+            }
+        },
+        "addPost": {
+            "type": "object",
+            "required": {
+                "name": "name",
+                "category": "category id",
+                "price": "123"
+            },
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "description": "Enter name",
+                    "example": "sain"
+                },
+                "category": {
+                    "type": "string",
+                    "description": "Enter category",
+                    "example": "64ed772a8dd5603ba2b8c530"
+                },
+                "price": {
+                    "type": "Number",
+                    "description": "Enter price",
+                    "example": 1000
+                }
+            }
+        },
+        "loginCustomerResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "String",
+                    "description": "success status",
+                    "example": true
+                },
+                "message": {
+                    "type": "string",
+                    "description": "Successful response"
+                },
+                "data":{
+                    "_id": "64ed772a8dd5603ba2b8c530",
+                    "fullname": "",
+                    "email": "sainrinku8@gmail.com",
+                    "phone": 9315290341,
+                    "role": "admin",
+                    "password": "$2b$10$/Cs.PFzrjRYS4YUHuYnJ4e1n/KpjxjdSoZ8AX15FbfCffSrxFxTw6",
+                    "createdAt": "2023-08-29T04:42:18.542Z",
+                    "updatedAt": "2023-08-29T04:42:18.542Z",
+                    "auth_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNhaW5yaW5rdThAZ21haWwuY29tIiwiaWF0IjoxNjkzMjg0MTUxfQ.wzkMraxyqMv4H892xFmFDA200K7Lzutva4Qe_Hn5-pA"
+                }
+            }
+        },
+
+        "createCustomerResponse": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "String",
+                    "description": "success status",
+                    "example": true
+                },
+                "message": {
+                    "type": "string",
+                    "description": "Successful response"
+                },
+                "data":{
+                    "fullname": "",
+                    "email": "sainrinku8@gmail.com",
+                    "phone": 9315290341,
+                    "role": "admin",
+                    "password": "$2b$10$/Cs.PFzrjRYS4YUHuYnJ4e1n/KpjxjdSoZ8AX15FbfCffSrxFxTw6",
+                    "_id": "64ed772a8dd5603ba2b8c530",
+                    "createdAt": "2023-08-29T04:42:18.542Z",
+                    "updatedAt": "2023-08-29T04:42:18.542Z"
+                }
+            }
+        },
+        "get200Response": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "String",
+                    "description": "success status",
+                    "example": true
+                },
+                "message": {
+                    "type": "string",
+                    "description": "Successful response"
+                }
+            }
+        },
+        "get400Response": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "String",
+                    "description": "success status",
+                    "example": false
+                },
+                "message": {
+                    "type": "string",
+                    "description": "Something is Wrong "
                 }
             }
         }

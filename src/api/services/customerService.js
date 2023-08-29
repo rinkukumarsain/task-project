@@ -83,22 +83,3 @@ exports.getCustomer = async (req, res) => {
     };
   }
 };
-
-exports.getAllCustomer = async (req, res) => {
-  try {
-    let user = await customerModel.find({});
-      return {
-        message: 'Get all customer',
-        status: true,
-        data: user,
-      };
-    
-  } catch (err) {
-    console.error(err);
-    return {
-      message: 'An error occurred',
-      status: false,
-      data: [],
-    };
-  }
-};
